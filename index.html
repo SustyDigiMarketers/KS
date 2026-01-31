@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Kanishk Systems | Futuristic IT Solutions</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: {
+                50: '#f0f9ff',
+                100: '#e0f2fe',
+                400: '#38bdf8',
+                500: '#0ea5e9',
+                600: '#0284c7',
+                700: '#0369a1',
+                900: '#0c4a6e',
+              }
+            },
+            animation: {
+              'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+              'float': 'float 6s ease-in-out infinite',
+              'glow': 'glow 2s ease-in-out infinite alternate',
+              'fade-in-up': 'fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+              'marquee': 'marquee 40s linear infinite',
+            },
+            keyframes: {
+              float: {
+                '0%, 100%': { transform: 'translateY(0)' },
+                '50%': { transform: 'translateY(-20px)' },
+              },
+              glow: {
+                'from': { boxShadow: '0 0 10px #0ea5e9, 0 0 20px #0ea5e9' },
+                'to': { boxShadow: '0 0 20px #38bdf8, 0 0 40px #38bdf8' }
+              },
+              fadeInUp: {
+                '0%': { opacity: '0', transform: 'translateY(30px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' },
+              },
+              marquee: {
+                '0%': { transform: 'translateX(0)' },
+                '100%': { transform: 'translateX(-50%)' },
+              }
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+      
+      body {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        background-color: #f8fafc;
+        overflow-x: hidden;
+      }
+
+      /* Hide scrollbar */
+      html::-webkit-scrollbar, body::-webkit-scrollbar { display: none; }
+      html, body { -ms-overflow-style: none; scrollbar-width: none; }
+
+      .glass-card {
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+      }
+
+      .mesh-bg {
+        background-color: #f8fafc;
+        background-image: 
+          radial-gradient(at 0% 0%, hsla(203, 92%, 95%, 1) 0, transparent 50%), 
+          radial-gradient(at 50% 0%, hsla(202, 80%, 92%, 1) 0, transparent 50%), 
+          radial-gradient(at 100% 0%, hsla(199, 89%, 94%, 1) 0, transparent 50%);
+      }
+
+      .text-glow {
+        text-shadow: 0 0 15px rgba(14, 165, 233, 0.3);
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .reveal-delay-1 { transition-delay: 0.1s; }
+      .reveal-delay-2 { transition-delay: 0.2s; }
+      .reveal-delay-3 { transition-delay: 0.3s; }
+
+      /* Custom Marquee Pause */
+      .pause-on-hover:hover .animate-marquee {
+        animation-play-state: paused;
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "@vitejs/plugin-react": "https://esm.sh/@vitejs/plugin-react@^5.1.2",
+    "react-router-dom": "https://esm.sh/react-router-dom@^7.13.0",
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "react": "https://esm.sh/react@^19.2.4",
+    "vite": "https://esm.sh/vite@^7.3.1",
+    "lucide-react": "https://esm.sh/lucide-react@^0.563.0",
+    "canvas-confetti": "https://esm.sh/canvas-confetti@^1.9.2"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body class="mesh-bg">
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+    <script>
+      const reveal = () => {
+        const reveals = document.querySelectorAll(".reveal");
+        reveals.forEach(el => {
+          const windowHeight = window.innerHeight;
+          const elementTop = el.getBoundingClientRect().top;
+          const elementVisible = 150;
+          if (elementTop < windowHeight - elementVisible) {
+            el.classList.add("active");
+          }
+        });
+      };
+      window.addEventListener("scroll", reveal);
+      window.addEventListener("load", reveal);
+    </script>
+  </body>
+</html>
